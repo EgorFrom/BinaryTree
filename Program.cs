@@ -34,7 +34,6 @@ namespace Сиакод_стр_20
             tree = null;
             return tree; 
         }
-        //public LinkedList<MyTree> ArrayElementsInLL = new LinkedList<MyTree>();
         private static int ppp;
         private static int CountElements = 0;
         public void Paint1(MyTree Tree, string[] ArrayElements)
@@ -168,7 +167,6 @@ namespace Сиакод_стр_20
         }
         private MyTree ForFilling(MyTree Tree)
         {
-            //вывести значение текущего узла?
             point1:
             if (ppp > 1)
             {
@@ -220,7 +218,7 @@ namespace Сиакод_стр_20
         }
         public void levelFixForHand(MyTree Tree)
         {
-            mas = new string[/*ForCL2()*/HowLevels+1][];
+            mas = new string[HowLevels+1][];
             for (int i = 0; i < mas.Length; i++)
             {
                 mas[i] = new string[0];
@@ -244,7 +242,7 @@ namespace Сиакод_стр_20
                 Lvl++;
                 ForlevelFix1(Tree.rightKnot, ref arrayEl);
 
-            }//действие с узлом
+            }
 
             Array.Resize(ref arrayEl[Lvl], arrayEl[Lvl].Length + 1);
             arrayEl[Lvl][arrayEl[Lvl].Length - 1] = Tree.value;
@@ -274,20 +272,10 @@ namespace Сиакод_стр_20
                 Lvl++;
                 ForlevelFix(Tree.rightKnot,ref arrayEl);
 
-            }//действие с узлом
+            }
             
             Array.Resize(ref arrayEl[Lvl], arrayEl[Lvl].Length + 1);
             arrayEl[Lvl][arrayEl[Lvl].Length-1] = Tree.value;
-            //if (Tree.leftKnot != null && Tree.rightKnot == null || Lvl + 1 == arrayEl.Length - 1)
-            //{
-            //    Array.Resize(ref arrayEl[Lvl+1], arrayEl[Lvl+1].Length + 1);
-            //    arrayEl[Lvl+1][arrayEl[Lvl+1].Length - 1] = " ";
-            //}
-            //if (Tree.leftKnot == null && Tree.rightKnot != null|| Lvl + 1 == arrayEl.Length - 1)
-            //{
-            //    Array.Resize(ref arrayEl[Lvl+1], arrayEl[Lvl+1].Length + 1);
-            //    arrayEl[Lvl+1][arrayEl[Lvl+1].Length - 1] = " ";
-            //}
             Lvl--;
             return null;
         }
@@ -308,12 +296,12 @@ namespace Сиакод_стр_20
             int countRight = Count - countLeft - 1;
             Tree.value = arrayEl[k];
             k++;
-            if (/*level < countLevels(arrayEl)*/countLeft > 0)
+            if (countLeft > 0)
             {
                 Tree.leftKnot = IBTFill(arrayEl, countLeft);
                 Tree.leftKnot.parent = Tree;
             }
-            if (/*level < countLevels(arrayEl)*/countRight > 0)
+            if (countRight > 0)
             {
                 Tree.rightKnot = IBTFill(arrayEl, countRight);
                 Tree.rightKnot.parent = Tree;
@@ -348,42 +336,9 @@ namespace Сиакод_стр_20
                 Prefix(tree.rightKnot);
             return tree;
         }
-        //public void print()
-        //{
-        //    for(int i = 0; i < mas.Length; i++)
-        //        for(int j = 0; j < mas[i].Length; j++)
-        //            //write
-        //}
     }
     class Program
     {
-        //static void PopStack(ref LinkedList<MyTree> LList)
-        //{
-        //    if (LList.Count > 0)
-        //    {
-        //        Console.WriteLine(LList.First.Value.value);
-        //        LList.Remove(LList.First);
-        //    }
-        //    else Console.WriteLine("Ошибка, стек пустой");
-        //}
-        //static void PushStack(ref LinkedList<MyTree> LList, string n)
-        //{
-        //    MyTree tree = new MyTree();
-        //    tree.value = n;
-        //    LList.AddFirst(tree);
-        //}
-        //static void Print(LinkedList<MyTree> LList)
-        //{
-        //    if (LList.Count > 0)
-        //    {
-        //        LinkedListNode<MyTree> node;
-        //        Console.WriteLine("Элементы коллекции в прямом направлении: ");
-        //        for (node = LList.First; node != null; node = node.Next)
-        //            Console.Write(node.Value.value + "\t");
-        //        Console.WriteLine();
-        //    }
-        //    else Console.WriteLine("В самолете пусто, выросла капуста");
-        //}
         static string[] readingFile()
         {
              
@@ -440,8 +395,6 @@ namespace Сиакод_стр_20
                 tags = tags.parent;
                 goto point2;
             }
-            //tags.value = "0_O";
-            //Console.Write(tree.value + " ");
             return tree;
         }
         static MyTree NRPostfix(MyTree tree)
@@ -549,27 +502,20 @@ namespace Сиакод_стр_20
             int m = int.Parse(Console.ReadLine());
             if (m == 1)
             {
-                //Tree.DisbalanseTree(Tree);
                 Console.WriteLine("Инфиксный обход");
                 NRInfix(Tree);
                 Console.WriteLine();
                 Console.WriteLine("Постфиксный обход");
-                //Tree.Infix(Tree);
-                //Console.WriteLine();
                 NRPostfix(Tree);
                 Console.WriteLine();
                 Console.WriteLine("Префиксный обход");
-                //Tree.Postfix(Tree);
-                //Console.WriteLine();
                 NRPrefix(Tree);
                 Console.WriteLine();
                 Console.WriteLine("Поуровневый обход");
-                //Tree.Prefix(Tree);
-                //Console.WriteLine();
                 if (n == 1)
                     Tree.levelFix(Tree, arrayEl);
                 else Tree.levelFixForHand(Tree);
-            }//Tree.print();
+            }
             Console.ReadKey();
 
         }
